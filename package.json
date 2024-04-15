@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "highlight.js": "^11.9.0"
+  },
+  "name": "cornerstone-code-blocks",
+  "version": "1.0.0",
+  "main": "./src/cornerstone-code-blocks.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuckfairy/cornerstone-code-blocks.git"
+  },
+  "author": "Chuckfairy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chuckfairy/cornerstone-code-blocks/issues"
+  },
+  "homepage": "https://github.com/chuckfairy/cornerstone-code-blocks#readme",
+  "description": ""
+}
