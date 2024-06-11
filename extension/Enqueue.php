@@ -5,7 +5,12 @@ namespace Cornerstone\CodeBlocks\Enqueue;
 const MAIN_SCRIPT_NAME = 'cornerstone-code-blocks';
 
 // Setup script registery
-wp_register_script(MAIN_SCRIPT_NAME, CS_CODE_BLOCKS_URI . '/dist/js/cornerstone-code-blocks.js', ['cs']);
+wp_register_script(
+  MAIN_SCRIPT_NAME,
+  CS_CODE_BLOCKS_URI . '/dist/js/cornerstone-code-blocks.js',
+  ['cs'],
+  CS_CODE_BLOCKS_VERSION
+);
 
 
 /**
