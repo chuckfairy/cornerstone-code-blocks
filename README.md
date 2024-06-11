@@ -13,8 +13,8 @@ Building
 npm run build;
 
 # Or individually
-npm run build-css
-npm run build-js
+npm run build-css;
+npm run build-js;
 
 # Scripts are also in ./bin/
 ```
