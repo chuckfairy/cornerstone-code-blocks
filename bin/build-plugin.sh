@@ -7,17 +7,18 @@ mkdir -p $FOLDER;
 
 # Clean
 rm -rf $FOLDER/*;
+rm ./dist/cornerstone-code-blocks.zip
 
 # Copy files
 cp -R ./ $FOLDER/;
 
-# Clean build files
+# Clean dev files
 rm $FOLDER/package.json;
 rm $FOLDER/package-lock.json;
-rm -f $FOLDER/node_modules;
-rm -f $FOLDER/src;
-rm -f $FOLDER/.git
-rm -f $FOLDER/dist/.gitkeep
+rm $FOLDER/dist/.gitkeep
+rm -rf $FOLDER/node_modules;
+rm -rf $FOLDER/src;
+rm -rf $FOLDER/.git
 
 # Create zip
 zip -r ./dist/cornerstone-code-blocks.zip $FOLDER;
