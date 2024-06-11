@@ -39,7 +39,8 @@ for FILE in "$DIRECTORY"/*; do
 
   # Replace .hljs with our special class output so we can use multiple
   # Different syntax highlighting in the same CS page
-  sed -i "s/\.hljs/.cs-code-block-$FILE_BASENAME_WITHOUT_SCSS.hljs/g" $FILE_OUTPUT;
+  # @TODO need to only replace hljs and replace all hljs-* with a .cs-code-block check
+  # sed -i "s/\.hljs/.cs-code-block-$FILE_BASENAME_WITHOUT_SCSS.hljs/g" $FILE_OUTPUT;
 done
 
 # Build Config JSON

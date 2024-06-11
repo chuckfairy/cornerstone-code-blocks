@@ -10,9 +10,6 @@ Author URI: https://chuckfairy.com/
 Text Domain: cornerstone
 Themeco Plugin: cornerstone-code-blocks
 */
-if (function_exists('cornerstone')) {
-  trigger_error('Cornerstone is not installed and is required for Cornerstone code blocks');
-}
 
 define('CS_CODE_BLOCKS_URI', plugin_dir_url(__FILE__));
 define('CS_CODE_BLOCKS_VERSION', '1.0.0');
@@ -23,5 +20,7 @@ add_action('init', function() {
     return;
   }
 
+
+  require_once(__DIR__ . '/extension/Enqueue.php');
   require_once(__DIR__ . '/extension/Element.php');
 });
