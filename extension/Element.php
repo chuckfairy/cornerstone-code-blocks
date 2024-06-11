@@ -2,7 +2,8 @@
 
 namespace Cornerstone\CodeBlocks\Element;
 
-use const Cornerstone\CodeBlocks\Enqueue\MAIN_SCRIPT_NAME;
+use function Cornerstone\CodeBlocks\Enqueue\enqueue;
+use function Cornerstone\CodeBlocks\Enqueue\enqueue_color_scheme;
 
 /**
  * Code block element
@@ -32,22 +33,14 @@ function render( $data ) {
   ];
 
   if (!empty($data['_builder_atts'])) {
-    $atts = array_merge($data['_builder_atts']);
+    $atts = array_merge($atts, $data['_builder_atts']);
   }
 
-  wp_enqueue_script(MAIN_SCRIPT_NAME);
+  // Enqueue JS
+  enqueue();
 
-  $style_name = 'cs-code-block-' . $data['color_scheme'];
-  $style_url = CS_CODE_BLOCKS_URI . 'dist/css/' . $data['color_scheme'] . '.css';
-  pdebug($style_url);
-  wp_register_style(
-    $style_name,
-    $style_url,
-    [],
-    CS_CODE_BLOCKS_URI
-  );
-
-  wp_enqueue_style($style_name);
+  // Enqueue color scheme
+  enqueue_color_scheme($data['color_scheme']);
 
   $output = cs_tag('pre', [],
     cs_tag( 'code', $atts, htmlspecialchars($data['code']) ),
@@ -55,6 +48,11 @@ function render( $data ) {
 
   return $output;
 }
+
+// Preview integration
+add_action('cs_before_preview_frame', function() {
+  enqueue();
+});
 
 
 
@@ -68,6 +66,14 @@ function controls() {
         [
           'key' => 'language',
           'label' => __('Language', 'cornerstone'),
+          'type' => 'text',
+          'group' => 'code-block:general',
+        ],
+
+        // Color Scheme
+        [
+          'key' => 'color_scheme',
+          'label' => __('Color Scheme', 'cornerstone'),
           'type' => 'text',
           'group' => 'code-block:general',
         ],
