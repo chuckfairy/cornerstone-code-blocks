@@ -62,27 +62,47 @@ function controls() {
   return cs_compose_controls(
     [
       'controls' => [
-        // Language
         [
-          'key' => 'language',
-          'label' => __('Language', 'cornerstone'),
-          'type' => 'text',
+          'type' => 'group',
           'group' => 'code-block:general',
-        ],
+          'label' => __('General', 'cornerstone'),
+          'controls' => [
 
-        // Color Scheme
-        [
-          'key' => 'color_scheme',
-          'label' => __('Color Scheme', 'cornerstone'),
-          'type' => 'text',
-          'group' => 'code-block:general',
-        ],
+            // Language
+            [
+              'key' => 'language',
+              'label' => __('Language', 'cornerstone'),
+              'type' => 'select',
+              'options' => [
+                'choices' => 'dynamic:code_blocks_languages',
+              ],
+            ],
 
-        // Code
-        [
-          'key' => 'code',
-          'type' => 'code-editor',
-          'group' => 'code-block:general',
+            // Color Scheme
+            [
+              'key' => 'color_scheme',
+              'label' => __('Color Scheme', 'cornerstone'),
+              'type' => 'select',
+              'options' => [
+                'choices' => 'dynamic:code_blocks_color_schemes',
+              ],
+            ],
+
+            // Code
+            [
+              'key' => 'code',
+              'type' => 'code-editor',
+              'options' => [
+                'mode' => 'html',
+                'expandable' => true,
+                'height' => 8,
+                'is_draggable' => false,
+                'no_rich_text' => true,
+                'button_label' => cs_recall( 'label_edit' ),
+                'header_label' => __('Code', 'cornerstone'),
+              ],
+            ],
+          ],
         ],
       ],
       'control_nav' => [

@@ -15,3 +15,5 @@ util.onLoad(function() {
     hljs.highlightElement(el);
   });
 });
+
+window.hljs = hljs;

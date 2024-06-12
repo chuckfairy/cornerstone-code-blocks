@@ -12,6 +12,8 @@ Themeco Plugin: cornerstone-code-blocks
 */
 
 define('CS_CODE_BLOCKS_URI', plugin_dir_url(__FILE__));
+define('CS_CODE_BLOCKS_PATH', plugin_dir_path(__FILE__));
+
 define('CS_CODE_BLOCKS_VERSION', '1.0.0');
 
 add_action('init', function() {
@@ -23,4 +25,9 @@ add_action('init', function() {
 
   require_once(__DIR__ . '/extension/Enqueue.php');
   require_once(__DIR__ . '/extension/Element.php');
+});
+
+// Load in dynamic options
+add_action('cs_dynamic_content_register', function() {
+  require_once(__DIR__ . '/extension/DynamicOptions.php');
 });
