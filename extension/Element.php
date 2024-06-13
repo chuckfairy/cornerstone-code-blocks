@@ -13,6 +13,7 @@ $values = cs_compose_values(
   [
     'code' => cs_value( '', 'markup' ),
     'language' => cs_value( 'javascript', 'markup' ),
+    'tab_size' => cs_value( 2, 'style' ),
     'color_scheme' => cs_value( 'tomorrow-night-bright', 'markup' ),
   ],
   'omega',
@@ -27,6 +28,10 @@ $values = cs_compose_values(
 // =============================================================================
 
 function render( $data ) {
+
+  $pre_atts = [
+    'class' => implode(' ', $data['classes']) . ' cs-code-block',
+  ];
 
   $atts = [
     'data-cs-code-block' => '',
@@ -46,7 +51,7 @@ function render( $data ) {
   // Enqueue color scheme
   enqueue_color_scheme($data['color_scheme']);
 
-  $output = cs_tag('pre', [],
+  $output = cs_tag('pre', $pre_atts,
     cs_tag( 'code', $atts, htmlspecialchars($data['code']) ),
   );
 
@@ -66,6 +71,7 @@ function controls() {
   return cs_compose_controls(
     [
       'controls' => [
+        // General
         [
           'type' => 'group',
           'group' => 'code-block:general',
@@ -92,6 +98,15 @@ function controls() {
               ],
             ],
 
+            // Tab Size
+            cs_partial_controls('range', [
+              'key' => 'tab_size',
+              'label' => __('Tab Size', 'cornerstone'),
+              'min' => 0,
+              'max' => 12,
+              'steps' => 1,
+            ]),
+
             // Code
             [
               'key' => 'code',
@@ -108,10 +123,26 @@ function controls() {
             ],
           ],
         ],
+
+        // Design
+        [
+          'type' => 'group',
+          'group' => 'code-block:design',
+          'label' => cs_recall('label_padding'),
+          'controls' => [
+            // Padding
+            [
+              'key' => 'padding',
+              'label' => cs_recall('label_padding'),
+              'type' => 'text',
+            ],
+          ],
+        ],
       ],
       'control_nav' => [
         'code-block' => cs_recall( 'label_primary_control_nav' ),
         'code-block:general' => cs_recall( 'label_general' ),
+        'code-block:design' => cs_recall( 'label_design' ),
       ],
     ],
     cs_partial_controls( 'effects' ),
@@ -128,11 +159,14 @@ function controls() {
 // =============================================================================
 
 cs_register_element( 'code-block', [
-  'title'      => __( 'Code Block', 'cornerstone' ),
-  'values'     => $values,
-  'includes'   => [ 'effects' ],
-  'builder'    => __NAMESPACE__ . '\controls',
-  'render'     => __NAMESPACE__ . '\render',
-  'group'      => 'content',
-  'options'    => []
+  'title' => __( 'Code Block', 'cornerstone' ),
+  'values' => $values,
+  'includes' => [ 'effects' ],
+  'builder' => __NAMESPACE__ . '\controls',
+  'render' => __NAMESPACE__ . '\render',
+  'group' => 'content',
+  'style' => function() {
+    return file_get_contents(CS_CODE_BLOCKS_PATH . 'tss/code-blocks.tss');
+  },
+  'options' => []
 ] );

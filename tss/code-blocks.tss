@@ -1,0 +1,6 @@
+// Pretag
+&.cs-code-block {
+  tab-size: get(tab_size);
+}
+
+
