@@ -49,7 +49,7 @@ for FILE in "$DIRECTORY"/*.js; do
   echo "import language from '$FILE_WITHOUT_NODE_MODULES'" > $FILE_OUTPUT.tmp.js;
   echo "hljs.registerLanguage('$FILE_BASENAME_WITHOUT_JS', language);" >> $FILE_OUTPUT.tmp.js;
 
-  esbuild --bundle $FILE_OUTPUT.tmp.js > $FILE_OUTPUT;
+  esbuild --bundle --minify $FILE_OUTPUT.tmp.js > $FILE_OUTPUT;
 
   rm $FILE_OUTPUT.tmp.js
 

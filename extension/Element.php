@@ -4,6 +4,7 @@ namespace Cornerstone\CodeBlocks\Element;
 
 use function Cornerstone\CodeBlocks\Enqueue\enqueue;
 use function Cornerstone\CodeBlocks\Enqueue\enqueue_color_scheme;
+use function Cornerstone\CodeBlocks\Enqueue\enqueue_language;
 
 /**
  * Code block element
@@ -38,6 +39,9 @@ function render( $data ) {
 
   // Enqueue JS
   enqueue();
+
+  // Enqueue Language JS
+  enqueue_language($data['language']);
 
   // Enqueue color scheme
   enqueue_color_scheme($data['color_scheme']);

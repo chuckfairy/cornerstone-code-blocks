@@ -20,9 +20,22 @@ function enqueue() {
   wp_enqueue_script(MAIN_SCRIPT_NAME);
 }
 
-// @TODO
+/**
+ * Enqueue hljs language registration script
+ */
 function enqueue_language(string $language) {
+  $name = MAIN_SCRIPT_NAME . '-' . $language;
+  $src = CS_CODE_BLOCKS_URI . 'dist/js/languages/' . $language . '.js';
 
+  // Setup script registery
+  wp_register_script(
+    $name,
+    $src,
+    ['cs', MAIN_SCRIPT_NAME],
+    CS_CODE_BLOCKS_VERSION
+  );
+
+  wp_enqueue_script($name);
 }
 
 function enqueue_color_scheme(string $colorScheme) {

@@ -1,7 +1,7 @@
 /**
  * Code block integration to rivet
  */
-import hljs from 'highlight.js/lib/common';
+import hljs from 'highlight.js/lib/core';
 
 const util = window.csGlobal.rivet.util;
 const attach = window.csGlobal.rivet.attach;
