@@ -1,5 +1,9 @@
 #!/bin/bash
 
+_DIR=$(dirname $0);
+
+ROOT_PATH=$(realpath $_DIR/..);
+
 FOLDER=/tmp/cornerstone-code-blocks/cornerstone-code-blocks;
 
 # Setup folder
@@ -24,5 +28,11 @@ rm -rf $FOLDER/.git
 rm -rf $FOLDER/bin
 rm -rf $FOLDER/screenshots
 
+# Navigate to zip so folder structure is okay
+cd /tmp/cornerstone-code-blocks/;
+
 # Create zip
-zip -r ./dist/cornerstone-code-blocks.zip $FOLDER;
+zip -r $ROOT_PATH/dist/cornerstone-code-blocks.zip ./cornerstone-code-blocks;
+
+# Navigate back
+cd $ROOT_PATH;

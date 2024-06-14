@@ -1,17 +1,22 @@
 <?php
 
+/**
+ * Code block element
+ */
+
 namespace Cornerstone\CodeBlocks\Element;
 
 use function Cornerstone\CodeBlocks\Enqueue\enqueue;
 use function Cornerstone\CodeBlocks\Enqueue\enqueue_color_scheme;
 use function Cornerstone\CodeBlocks\Enqueue\enqueue_language;
 
-/**
- * Code block element
- */
+// Code block element values
 $values = cs_compose_values(
   [
-    'code' => cs_value( '', 'markup' ),
+    'code' => cs_value(
+      __('/* Should Old Acquaintance be forgot, and never brought to mind? */', 'cornerstone'),
+      'markup'
+    ),
     'language' => cs_value( 'javascript', 'markup' ),
     'tab_size' => cs_value( 2, 'style' ),
     'color_scheme' => cs_value( 'tomorrow-night-bright', 'markup' ),
@@ -20,6 +25,7 @@ $values = cs_compose_values(
     'max_width' => cs_value( 'none' ),
     'margin' => cs_value( '!0em' ),
     'padding' => cs_value( '!0em' ),
+
     'border_width' => cs_value( '!0px' ),
     'border_style' => cs_value( 'solid' ),
     'border_color' => cs_value( 'transparent', 'style:color' ),
@@ -28,6 +34,7 @@ $values = cs_compose_values(
     'box_shadow_dimensions' => cs_value( '!0px 0px 0px 0px' ),
     'box_shadow_color' => cs_value( 'transparent', 'style:color' ),
     'box_shadow_color_alt' => cs_value( '', 'style:color' ),
+
     'font_family' => cs_value( 'inherit', 'style:font-family' ),
     'font_weight' => cs_value( 'inherit', 'style:font-weight' ),
     'font_size' => cs_value( '1em' ),
@@ -49,8 +56,7 @@ $values = cs_compose_values(
 
 
 
-// Render
-// =============================================================================
+// Render element data
 
 function render( $data ) {
 
@@ -114,6 +120,7 @@ function controls() {
               'label' => __('Language', 'cornerstone'),
               'type' => 'select',
               'options' => [
+                // @see extension/DynamicOptions.php
                 'choices' => 'dynamic:code_blocks_languages',
               ],
             ],
@@ -124,6 +131,7 @@ function controls() {
               'label' => __('Color Scheme', 'cornerstone'),
               'type' => 'select',
               'options' => [
+                // @see extension/DynamicOptions.php
                 'choices' => 'dynamic:code_blocks_color_schemes',
               ],
             ],
@@ -204,7 +212,6 @@ function controls() {
 
 
 // Register Element
-// =============================================================================
 
 cs_register_element( 'code-block', [
   'title' => __( 'Code Block', 'cornerstone' ),
