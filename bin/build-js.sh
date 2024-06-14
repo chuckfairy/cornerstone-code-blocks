@@ -6,10 +6,11 @@
 # Clean
 rm -rf ./dist/js/*
 
-# Build out Rivet and CS integration
+# Build directories
 mkdir -p ./dist/js
 mkdir -p ./dist/js/languages
 
+# Build out Rivet and CS integration
 esbuild --bundle ./src/cornerstone-code-blocks.js > ./dist/js/cornerstone-code-blocks.js
 esbuild --bundle --minify ./src/cornerstone-code-blocks.js > ./dist/js/cornerstone-code-blocks.min.js
 

@@ -1,6 +1,54 @@
-// Pretag
+// Pre tag
 &.cs-code-block {
   tab-size: get(tab_size);
 }
 
+// Code tag
+&.cs-code-block > code.cs-code-block-code {
+  // Width
+  @if changed('100%', get(width), get-base(width)) {
+    width: get(width);
+  }
 
+  // Margin
+  @include margin( get-base(margin), get(margin));
+
+  // Padding
+  @include padding( get-base(padding), get(padding));
+
+  // Border
+  @include border(
+    $width:  get(border_width),
+    $style:  get(border_style),
+    $base:   get(border_color),
+    $alt:    get(border_color_alt)
+  );
+
+  // Border Radius
+  @include border-radius( get-base(border_radius), get(border_radius));
+
+  // Padding
+  @include padding( get-base(padding), get(padding));
+
+  // Box Shadow
+  @include box-shadow(
+    $dimensions: get(box_shadow_dimensions),
+    $base: get(box_shadow_color),
+    $alt: get(box_shadow_color_alt)
+  );
+
+  // Text Format Props
+  @include linotype(
+    $ff:       get(font_family),
+    $fsize:    get(font_size),
+    $fstyle:   get(font_style),
+    $fw:       get(font_weight),
+    $lh:       get(line_height),
+    $ls:       get(letter_spacing),
+    //$ta:       get(text_align),
+    $td:       get(text_decoration),
+    $tt:       get(text_transform),
+    $lsForce: true,
+    $ttForce: true
+  );
+}

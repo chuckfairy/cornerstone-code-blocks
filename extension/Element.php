@@ -15,6 +15,31 @@ $values = cs_compose_values(
     'language' => cs_value( 'javascript', 'markup' ),
     'tab_size' => cs_value( 2, 'style' ),
     'color_scheme' => cs_value( 'tomorrow-night-bright', 'markup' ),
+
+    'width' => cs_value( '100%' ),
+    'max_width' => cs_value( 'none' ),
+    'margin' => cs_value( '!0em' ),
+    'padding' => cs_value( '!0em' ),
+    'border_width' => cs_value( '!0px' ),
+    'border_style' => cs_value( 'solid' ),
+    'border_color' => cs_value( 'transparent', 'style:color' ),
+    'border_color_alt' => cs_value( '', 'style:color' ),
+    'border_radius' => cs_value( '!0px' ),
+    'box_shadow_dimensions' => cs_value( '!0px 0px 0px 0px' ),
+    'box_shadow_color' => cs_value( 'transparent', 'style:color' ),
+    'box_shadow_color_alt' => cs_value( '', 'style:color' ),
+    'font_family' => cs_value( 'inherit', 'style:font-family' ),
+    'font_weight' => cs_value( 'inherit', 'style:font-weight' ),
+    'font_size' => cs_value( '1em' ),
+    'line_height' => cs_value( 'inherit' ),
+    'letter_spacing' => cs_value( '0em' ),
+    'font_style' => cs_value( 'normal' ),
+
+    'text_decoration' => cs_value( 'none' ),
+    'text_transform' => cs_value( 'none' ),
+    'text_shadow_dimensions' => cs_value( '!0px 0px 0px' ),
+    'text_shadow_color' => cs_value( 'transparent', 'style:color' ),
+    'text_shadow_color_alt' => cs_value( '', 'style:color' ),
   ],
   'omega',
   'omega:custom-atts',
@@ -35,7 +60,7 @@ function render( $data ) {
 
   $atts = [
     'data-cs-code-block' => '',
-    'class' => "cs-code-block-{$data['color_scheme']} hljs language-{$data['language']}",
+    'class' => "cs-code-block-code cs-code-block-{$data['color_scheme']} hljs language-{$data['language']}",
   ];
 
   if (!empty($data['_builder_atts'])) {
@@ -68,6 +93,11 @@ add_action('cs_before_preview_frame', function() {
 // Controls
 
 function controls() {
+  $design_group = [
+    'group' => 'code-block:design',
+  ];
+
+  //pdebug(cs_control( 'margin', '' ));exit;
   return cs_compose_controls(
     [
       'controls' => [
@@ -124,28 +154,46 @@ function controls() {
           ],
         ],
 
-        // Design
-        [
-          'type' => 'group',
+        // Text Group
+        cs_control( 'text-format', '', [
+          'group' => 'code-block:text',
+          'no_text_color' => true,
+          'no_text_align' => true,
+        ]),
+
+        // Design Group
+        cs_recall( 'control_mixin_width', [
+          'key' => 'width',
           'group' => 'code-block:design',
-          'label' => cs_recall('label_padding'),
-          'controls' => [
-            // Padding
-            [
-              'key' => 'padding',
-              'label' => cs_recall('label_padding'),
-              'type' => 'text',
-            ],
-          ],
-        ],
+        ]),
+
+        // Margin
+        cs_control( 'margin', '', $design_group ),
+
+        // Padding
+        cs_control( 'padding', '', $design_group ),
+
+        // Border
+        cs_control( 'border', '', $design_group ),
+
+        // Border Radius
+        cs_control( 'border-radius', '', $design_group ),
+
+        // Box Shadow
+        cs_control( 'box-shadow', '', $design_group ),
       ],
       'control_nav' => [
         'code-block' => cs_recall( 'label_primary_control_nav' ),
         'code-block:general' => cs_recall( 'label_general' ),
+        'code-block:text' => cs_recall( 'label_text' ),
         'code-block:design' => cs_recall( 'label_design' ),
       ],
     ],
+
+    // Effects Tab
     cs_partial_controls( 'effects' ),
+
+    // Omega / Customize Tab
     cs_partial_controls( 'omega', [
       'add_custom_atts' => true,
       'add_looper_provider' => true,
