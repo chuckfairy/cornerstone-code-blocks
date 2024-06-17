@@ -10,6 +10,12 @@ use function Cornerstone\CodeBlocks\Enqueue\enqueue;
 use function Cornerstone\CodeBlocks\Enqueue\enqueue_color_scheme;
 use function Cornerstone\CodeBlocks\Enqueue\enqueue_language;
 
+// Defaults
+$language = apply_filters('cs_code_blocks_default_language', 'javascript');
+$tabSize = apply_filters('cs_code_blocks_default_tab_size', 2);
+$colorScheme = apply_filters('cs_code_blocks_default_tab_size', 'tomorrow-night-bright');
+
+
 // Code block element values
 $values = cs_compose_values(
   [
@@ -17,9 +23,9 @@ $values = cs_compose_values(
       __('/* Should Old Acquaintance be forgot, and never brought to mind? */', 'cornerstone'),
       'markup'
     ),
-    'language' => cs_value( 'javascript', 'markup' ),
-    'tab_size' => cs_value( 2, 'style' ),
-    'color_scheme' => cs_value( 'tomorrow-night-bright', 'markup' ),
+    'language' => cs_value( $language, 'markup' ),
+    'tab_size' => cs_value( $tabSize, 'style' ),
+    'color_scheme' => cs_value( $colorScheme, 'markup' ),
 
     'width' => cs_value( '100%' ),
     'max_width' => cs_value( 'none' ),
@@ -224,4 +230,4 @@ cs_register_element( 'code-block', [
     return file_get_contents(CS_CODE_BLOCKS_PATH . 'tss/code-blocks.tss');
   },
   'options' => []
-] );
+]);

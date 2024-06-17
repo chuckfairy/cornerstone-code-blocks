@@ -16,7 +16,7 @@ OUTPUT_DIRECTORY="./dist/css";
 CONFIG_ARRAY=()
 
 # Loop through files
-for FILE in "$DIRECTORY"/*; do
+for FILE in "$DIRECTORY"/* "$DIRECTORY"/base16/*; do
   # If Directory ignore
   if [ -d "$FILE" ]; then
     # Skip directories
@@ -33,7 +33,7 @@ for FILE in "$DIRECTORY"/*; do
   echo "Processing ${FILE_BASENAME_WITHOUT_SCSS}"
 
   # Build via SASS
-  sass --no-source-map $FILE $FILE_OUTPUT;
+  sass --no-source-map --style=compressed $FILE $FILE_OUTPUT;
 
   CONFIG_ARRAY+=($FILE_BASENAME_WITHOUT_SCSS);
 

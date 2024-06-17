@@ -13,6 +13,9 @@ cs_dynamic_content_register_dynamic_option('code_blocks_color_schemes', [
 
     $json = json_decode($json, true);
 
+    // Alphabetize
+    sort($json);
+
     // Return as control select choices
     return cs_array_as_choices($json);
   },
