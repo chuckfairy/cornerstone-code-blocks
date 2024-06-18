@@ -46,8 +46,26 @@ function enqueue_color_scheme(string $colorScheme) {
     $style_name,
     $style_url,
     [],
-    CS_CODE_BLOCKS_URI
+    CS_CODE_BLOCKS_VERSION
   );
 
   wp_enqueue_style($style_name);
+}
+
+/**
+ * Default styling for code blocks to limit CSS output
+ */
+function enqueue_default_styles() {
+  static $hasAdded;
+
+  if (!is_null($hasAdded)) {
+    return;
+  }
+
+  $hasAdded = true;
+
+  cornerstone('Styling')->addStyles(
+    'cs-code-blocks-default-styling',
+    file_get_contents(CS_CODE_BLOCKS_PATH . 'css/code-blocks.css')
+  );
 }
