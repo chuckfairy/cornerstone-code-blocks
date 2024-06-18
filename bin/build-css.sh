@@ -30,7 +30,7 @@ for FILE in "$DIRECTORY"/* "$DIRECTORY"/base16/*; do
   FILE_OUTPUT=$OUTPUT_DIRECTORY/$FILE_BASENAME_CSS;
 
   # Message
-  echo "Processing ${FILE_BASENAME_WITHOUT_SCSS}"
+  echo "Processing Color Scheme : ${FILE_BASENAME_WITHOUT_SCSS}"
 
   # Build via SASS
   sass --no-source-map --style=compressed $FILE $FILE_OUTPUT;

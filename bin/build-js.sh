@@ -40,7 +40,7 @@ for FILE in "$DIRECTORY"/*.js; do
   FILE_BASENAME_WITHOUT_JS="${FILE_BASENAME/.js/}";
   FILE_OUTPUT=$OUTPUT_DIRECTORY/$FILE_BASENAME;
 
-  echo "Processing $FILE_BASENAME_WITHOUT_JS";
+  echo "Processing Language : $FILE_BASENAME_WITHOUT_JS";
 
   # Copy
   #cat $FILE > $FILE_OUTPUT;
@@ -50,10 +50,13 @@ for FILE in "$DIRECTORY"/*.js; do
   echo "import language from '$FILE_WITHOUT_NODE_MODULES'" > $FILE_OUTPUT.tmp.js;
   echo "hljs.registerLanguage('$FILE_BASENAME_WITHOUT_JS', language);" >> $FILE_OUTPUT.tmp.js;
 
+  # esbuild command bundling the import statement
   esbuild --bundle --minify $FILE_OUTPUT.tmp.js > $FILE_OUTPUT;
 
+  # Remove temp js file
   rm $FILE_OUTPUT.tmp.js
 
+  # Add to JSON config for output later
   CONFIG_ARRAY+=($FILE_BASENAME_WITHOUT_JS);
 done
 

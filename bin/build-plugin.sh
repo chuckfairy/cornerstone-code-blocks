@@ -31,6 +31,8 @@ rm -rf $FOLDER/screenshots
 # Navigate to zip so folder structure is okay
 cd /tmp/cornerstone-code-blocks/;
 
+echo "Zipping plugin";
+
 # Create zip
 zip -r $ROOT_PATH/dist/cornerstone-code-blocks.zip ./cornerstone-code-blocks;
 
