@@ -38,6 +38,10 @@ for FILE in "$DIRECTORY"/*.js; do
   FILE_BASENAME=$(basename $FILE);
   FILE_WITHOUT_NODE_MODULES="${FILE/.\/node_modules\//}";
   FILE_BASENAME_WITHOUT_JS="${FILE_BASENAME/.js/}";
+
+  # Remove .js at the end since imports with .js are deprecated
+  FILE_IMPORT_NAME="${FILE_WITHOUT_NODE_MODULES/$FILE_BASENAME_WITHOUT_JS.js/$FILE_BASENAME_WITHOUT_JS}";
+
   FILE_OUTPUT=$OUTPUT_DIRECTORY/$FILE_BASENAME;
 
   echo "Processing Language : $FILE_BASENAME_WITHOUT_JS";
@@ -47,7 +51,7 @@ for FILE in "$DIRECTORY"/*.js; do
 
   # Add register statement
   # This needs .tmp.js because esbuild doesn't like building to the same file
-  echo "import language from '$FILE_WITHOUT_NODE_MODULES'" > $FILE_OUTPUT.tmp.js;
+  echo "import language from '$FILE_IMPORT_NAME'" > $FILE_OUTPUT.tmp.js;
   echo "hljs.registerLanguage('$FILE_BASENAME_WITHOUT_JS', language);" >> $FILE_OUTPUT.tmp.js;
 
   # esbuild command bundling the import statement

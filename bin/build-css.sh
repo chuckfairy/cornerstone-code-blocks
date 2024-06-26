@@ -25,15 +25,27 @@ for FILE in "$DIRECTORY"/* "$DIRECTORY"/base16/*; do
 
   # Use basename of this file
   FILE_BASENAME=$(basename $FILE);
+
+  # /base16/ directory has some duplicate names as non base16
+  # So we add -base16 to the file name
+  if [[ $FILE == *"base16/"* ]]; then
+    FILE_BASENAME="${FILE_BASENAME/.scss/-base16.scss}";
+  fi
+
+  # Basename without scss for usage in Dynamic Options
   FILE_BASENAME_WITHOUT_SCSS="${FILE_BASENAME/.scss/}";
+
+  # We build .scss to .css through sass
   FILE_BASENAME_CSS="${FILE_BASENAME/.scss/.css}";
+
+  # Final output file name
   FILE_OUTPUT=$OUTPUT_DIRECTORY/$FILE_BASENAME_CSS;
 
   # Message
   echo "Processing Color Scheme : ${FILE_BASENAME_WITHOUT_SCSS}"
 
   # Build via SASS
-  sass --no-source-map --style=compressed $FILE $FILE_OUTPUT;
+  sass --no-source-map $FILE $FILE_OUTPUT;
 
   CONFIG_ARRAY+=($FILE_BASENAME_WITHOUT_SCSS);
 
