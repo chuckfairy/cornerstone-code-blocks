@@ -4,10 +4,15 @@ namespace Cornerstone\CodeBlocks\Enqueue;
 
 const MAIN_SCRIPT_NAME = 'cornerstone-code-blocks';
 
+// Script URI use .min if not running SCRIPT_DEBUG
+$SCRIPT_URI = defined('SCRIPT_DEBUG') && !empty(SCRIPT_DEBUG)
+  ? CS_CODE_BLOCKS_URI . '/dist/js/cornerstone-code-blocks.js'
+  : CS_CODE_BLOCKS_URI . '/dist/js/cornerstone-code-blocks.min.js';
+
 // Setup script registery
 wp_register_script(
   MAIN_SCRIPT_NAME,
-  CS_CODE_BLOCKS_URI . '/dist/js/cornerstone-code-blocks.js',
+  $SCRIPT_URI,
   ['cs'],
   CS_CODE_BLOCKS_VERSION
 );
