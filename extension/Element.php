@@ -71,14 +71,29 @@ function render( $data ) {
     'class' => implode(' ', $data['classes']) . ' cs-code-block',
   ];
 
+  // ID set from the customize tab
+  if (!empty($data['id'])) {
+    $pre_atts['id'] = $data['id'];
+  }
+
+  // Custom attributes merging
+  if (!empty($data['custom_atts'])) {
+    $pre_atts = array_merge($pre_atts, json_decode($data['custom_atts'], true));
+  }
+
+  // Preview attributes
+  if (!empty($data['_builder_atts'])) {
+    $pre_atts = array_merge($pre_atts, $data['_builder_atts']);
+  }
+
+  // Apply effects from Effects tab
+  $pre_atts = cs_apply_effect( $pre_atts, $data );
+
+  // Our attributes for the <code> element
   $atts = [
     'data-cs-code-block' => '',
     'class' => "cs-code-block-code cs-code-block-{$data['color_scheme']} hljs language-{$data['language']}",
   ];
-
-  if (!empty($data['_builder_atts'])) {
-    $atts = array_merge($atts, $data['_builder_atts']);
-  }
 
   // Enqueue JS
   enqueue();
@@ -92,10 +107,12 @@ function render( $data ) {
   // Default styling
   enqueue_default_styles();
 
+  // Output <pre><code> output
   $output = cs_tag('pre', $pre_atts,
     cs_tag( 'code', $atts, htmlspecialchars($data['code']) ),
   );
 
+  // Return rendered string
   return $output;
 }
 
