@@ -31,3 +31,8 @@ add_action('init', function() {
 add_action('cs_dynamic_content_register', function() {
   require_once(__DIR__ . '/extension/DynamicOptions.php');
 });
+
+// Prefab registry
+add_action('cs_register_prefab_elements', function() {
+  require_once(__DIR__ . '/extension/Prefabs.php');
+});

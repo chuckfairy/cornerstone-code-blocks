@@ -55,6 +55,7 @@ $values = cs_compose_values(
     'text_shadow_color' => cs_value( 'transparent', 'style:color' ),
     'text_shadow_color_alt' => cs_value( '', 'style:color' ),
   ],
+  // Omega / Customize tab values
   'omega',
   'omega:custom-atts',
   'omega:looper-provider',
@@ -66,7 +67,7 @@ $values = cs_compose_values(
 // Render element data
 
 function render( $data ) {
-
+  // <pre> tag top level element attributes
   $pre_atts = [
     'class' => implode(' ', $data['classes']) . ' cs-code-block',
   ];
@@ -115,12 +116,6 @@ function render( $data ) {
   // Return rendered string
   return $output;
 }
-
-// Preview integration
-add_action('cs_before_preview_frame', function() {
-  enqueue();
-});
-
 
 
 // Controls
