@@ -16,7 +16,7 @@ util.onLoad(function() {
   });
 
   // Copy Text of another element to the clipboard
-  // based on the
+  // based on the data-copy-element data attribute as the selector
   attach('[data-copy-element]', function(el, elementSelector) {
     // Element to change the message when it is copied
     const textDisplayElement = el.querySelector(el.getAttribute('data-copy-text-selector'));
@@ -30,7 +30,7 @@ util.onLoad(function() {
     // or another element that is outside of the element we are attaching to
     return util.listener(el, 'click', function() {
       // Find element to copy the area from
-      const selector = el.getAttribute('data-copy-element');
+      const selector = el.getAttribute(elementSelector);
       const copyElement = document.querySelector(selector);
 
       // Could not find element to copy
@@ -65,7 +65,7 @@ util.onLoad(function() {
         }, 5000)
       }, function(err) {
         // Could not copy, possibly a browser setting
-        console.error('Async: Could not copy text: ', err);
+        console.error('Could not copy text: ', err);
       });
 
     });

@@ -71,7 +71,7 @@ cs_register_prefab_element('interactive', 'code-snippet-area', [
           ]
         ]
       ]
-    ]),
+    ], JSON_PRETTY_PRINT),
     'layout_div_border_color' => 'rgb(206, 206, 206)',
     'layout_div_border_color_alt' => 'rgb(206, 206, 206)',
     'layout_div_border_radius' => '0.5em',

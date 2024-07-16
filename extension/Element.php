@@ -70,6 +70,7 @@ function render( $data ) {
   // <pre> tag top level element attributes
   $pre_atts = [
     'class' => implode(' ', $data['classes']) . ' cs-code-block',
+    'data-code-block' => true,
   ];
 
   // ID set from the customize tab
@@ -245,5 +246,8 @@ cs_register_element( 'code-block', [
   'style' => function() {
     return file_get_contents(CS_CODE_BLOCKS_PATH . 'tss/code-blocks.tss');
   },
+  'tss' => [
+    'modules' => [ 'effects' ]
+  ],
   'options' => []
 ]);
