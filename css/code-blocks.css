@@ -1,7 +1,6 @@
 /**
  * Code blocks default css
  */
-pre.cs-code-block {
+.cs-code-block {
   margin: 0;
-  transition-duration: 0.3s;
 }

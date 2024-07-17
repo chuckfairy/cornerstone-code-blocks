@@ -3,6 +3,7 @@
  */
 import hljs from 'highlight.js/lib/core';
 
+// Cornerstone util aliases
 const util = window.csGlobal.rivet.util;
 const attach = window.csGlobal.rivet.attach;
 
@@ -72,4 +73,5 @@ util.onLoad(function() {
   });
 });
 
+// Exported so the langauges we build can use it
 window.hljs = hljs;

@@ -247,7 +247,16 @@ cs_register_element( 'code-block', [
     return file_get_contents(CS_CODE_BLOCKS_PATH . 'tss/code-blocks.tss');
   },
   'tss' => [
-    'modules' => [ 'effects' ]
+    'modules' => [
+      ['effects', [
+        'args' => [
+          // This is a hack because pre tags do not have transitions set
+          // And 0ms would be registered as empty causing it to go to the default
+          // which is 300ms
+          'transition_base' => '0.5ms'
+        ]
+      ]],
+    ],
   ],
   'options' => []
 ]);

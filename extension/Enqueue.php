@@ -17,6 +17,14 @@ wp_register_script(
   CS_CODE_BLOCKS_VERSION
 );
 
+// Registry base styles
+wp_register_style(
+  MAIN_SCRIPT_NAME,
+  CS_CODE_BLOCKS_URI . '/css/code-blocks.css',
+  ['cs'],
+  CS_CODE_BLOCKS_VERSION
+);
+
 
 /**
  * Enqueue main script if loading a code block
@@ -61,16 +69,5 @@ function enqueue_color_scheme(string $colorScheme) {
  * Default styling for code blocks to limit CSS output
  */
 function enqueue_default_styles() {
-  static $hasAdded;
-
-  if (!is_null($hasAdded)) {
-    return;
-  }
-
-  $hasAdded = true;
-
-  cornerstone('Styling')->addStyles(
-    'cs-code-blocks-default-styling',
-    file_get_contents(CS_CODE_BLOCKS_PATH . 'css/code-blocks.css')
-  );
+  wp_enqueue_style(MAIN_SCRIPT_NAME);
 }
