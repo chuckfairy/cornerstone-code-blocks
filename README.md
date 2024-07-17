@@ -2,6 +2,10 @@
 
 Using [Highlight.js](https://github.com/highlightjs/highlight.js) create a new [Themeco Cornerstone](https://theme.co/pro) element that outputs a code block.
 
+![Main Element](https://raw.githubusercontent.com/chuckfairy/cornerstone-code-blocks/master/screenshots/main_element.png)
+
+![Code Area Prefab](https://raw.githubusercontent.com/chuckfairy/cornerstone-code-blocks/master/screenshots/code_area_prefab.png)
+
 
 ## Features
 
