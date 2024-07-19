@@ -27,9 +27,16 @@ $values = cs_compose_values(
     'language' => cs_value( $language, 'markup' ),
     'tab_size' => cs_value( $tabSize, 'style' ),
     'color_scheme' => cs_value( $colorScheme, 'markup' ),
+    'white_space' => cs_value('inherit'),
 
     'width' => cs_value( '100%' ),
     'max_width' => cs_value( 'none' ),
+    'min_width' => cs_value( '0px' ),
+
+    'height' => cs_value( 'auto' ),
+    'max_height' => cs_value( 'none' ),
+    'min_height' => cs_value( '0px' ),
+
     'margin' => cs_value( '!0em' ),
     'padding' => cs_value( '!0em' ),
 
@@ -163,10 +170,33 @@ function controls() {
             cs_partial_controls('range', [
               'key' => 'tab_size',
               'label' => __('Tab Size', 'cornerstone'),
+              'description' => __('The size of tabs used in the code editor. This does not change the size of spaces', 'cornerstone'),
               'min' => 0,
               'max' => 12,
               'steps' => 1,
             ]),
+
+            // White Space / Word Wrapping
+            [
+              'key' => 'white_space',
+              'label' => __('Line Wrap', 'cornerstone'),
+              'type' => 'choose',
+              'options' => [
+                'choices' => [
+
+                  [
+                    'value' => 'inherit',
+                    'label' => __('No', 'cornerstone'),
+                  ],
+
+                  [
+                    'value' => 'pre-wrap',
+                    'label' => __('Yes', 'cornerstone'),
+                  ],
+
+                ],
+              ],
+            ],
 
             // Code
             [
@@ -182,6 +212,7 @@ function controls() {
                 'header_label' => __('Code', 'cornerstone'),
               ],
             ],
+
           ],
         ],
 
@@ -193,10 +224,42 @@ function controls() {
         ]),
 
         // Design Group
-        cs_recall( 'control_mixin_width', [
-          'key' => 'width',
+
+        [
+          'type' => 'group',
           'group' => 'code-block:design',
-        ]),
+          'controls' => [
+            // Width
+            cs_recall( 'control_mixin_width', [
+              'key' => 'width',
+            ]),
+
+            // Min Width
+            cs_recall( 'control_mixin_min_width', [
+              'key' => 'min_width',
+            ]),
+
+            // Max Width
+            cs_recall( 'control_mixin_max_width', [
+              'key' => 'max_width',
+            ]),
+
+            // Height
+            cs_recall( 'control_mixin_height', [
+              'key' => 'height',
+            ]),
+
+            // Min Height
+            cs_recall( 'control_mixin_min_height', [
+              'key' => 'min_height',
+            ]),
+
+            // Max Height
+            cs_recall( 'control_mixin_max_height', [
+              'key' => 'max_height',
+            ]),
+          ],
+        ],
 
         // Margin
         cs_control( 'margin', '', $design_group ),

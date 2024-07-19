@@ -5,10 +5,21 @@
 
 // Code tag
 &.cs-code-block > code.cs-code-block-code {
+  white-space: get(white_space);
+
   // Width
   @if changed('100%', get(width), get-base(width)) {
     width: get(width);
   }
+
+  min-width: get(min_width);
+  max-width: get(max_width);
+
+  // Height
+  height: get(height);
+  min-height: get(min_height);
+  max-height: get(max_height);
+
 
   // Margin
   @include margin( get-base(margin), get(margin));

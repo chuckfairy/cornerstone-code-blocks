@@ -4,3 +4,7 @@
 .cs-code-block {
   margin: 0;
 }
+
+.cs-code-block > code {
+  word-break: break-all;
+}

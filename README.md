@@ -9,10 +9,11 @@ Using [Highlight.js](https://github.com/highlightjs/highlight.js) create a new [
 
 ## Features
 
-- Cornerstone native controls including loopers, conditions, custom attributes, and custom CSS
+- Cornerstone native controls including loopers, conditions, styles, custom attributes, and custom CSS
 - Sample Prefab with copy code button
 - Over 200 colorschemes
 - Support for over 150 languages and file types
+- Will not output any CSS or JS to your page if is not being used
 
 
 ## Requirements
