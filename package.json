@@ -8,9 +8,10 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build-js; npm run build-css; npm run build-plugin;",
+    "build": "npm run build-js; npm run build-languages; npm run build-css; npm run build-plugin;",
     "build-css": "./bin/build-css.sh",
     "build-js": "./bin/build-js.sh",
+    "build-languages": "./bin/build-languages.sh",
     "build-plugin": "./bin/build-plugin.sh"
   },
   "repository": {

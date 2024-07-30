@@ -31,12 +31,11 @@ util.onLoad(function() {
     // or another element that is outside of the element we are attaching to
     return util.listener(el, 'click', function() {
       // Find element to copy the area from
-      const selector = el.getAttribute(elementSelector);
-      const copyElement = document.querySelector(selector);
+      const copyElement = document.querySelector(elementSelector);
 
       // Could not find element to copy
       if (!copyElement) {
-        console.error('Could not find element with selector : ', selector);
+        console.error('Could not find element with selector : ', elementSelector);
         return;
       }
 

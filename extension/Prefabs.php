@@ -1,8 +1,8 @@
 <?php
 
 // Code Snippet Area Prefab
-cs_register_prefab_element('interactive', 'code-snippet-area', [
-  'title' => __('Code Snippet Area', 'cornerstone'),
+cs_register_prefab_element('interactive', 'code-block-area', [
+  'title' => __('Code Block Area', 'cornerstone'),
   'type' => 'layout-div',
   'scope'  => [ 'all' ],
   'values' => [
