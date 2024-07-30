@@ -16,13 +16,14 @@ define('CS_CODE_BLOCKS_PATH', plugin_dir_path(__FILE__));
 
 define('CS_CODE_BLOCKS_VERSION', '1.0.0');
 
+// Init
 add_action('init', function() {
   if (!function_exists('cornerstone')) {
     trigger_error('Cornerstone is not installed, Cornerstone Code Blocks does not work without it');
     return;
   }
 
-
+  // Includes for enqueue and Element registry
   require_once(__DIR__ . '/extension/Enqueue.php');
   require_once(__DIR__ . '/extension/Element.php');
 });
