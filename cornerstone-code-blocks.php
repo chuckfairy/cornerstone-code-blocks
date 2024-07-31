@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Cornerstone Code Blocks
-Plugin URI: https://theme.co
+Plugin URI: https://github.com/chuckfairy/cornerstone-code-blocks
 Description: Code blocks in Cornerstone with Syntax Highlighting from Highlight.js
 Version:      1.0.0
 Author: Chuckfairy

@@ -140,7 +140,7 @@ function controls() {
         // General
         [
           'type' => 'group',
-          'group' => 'code-block:general',
+          'group' => 'code-block:code',
           'label' => __('General', 'cornerstone'),
           'controls' => [
 
@@ -278,7 +278,7 @@ function controls() {
       ],
       'control_nav' => [
         'code-block' => cs_recall( 'label_primary_control_nav' ),
-        'code-block:general' => cs_recall( 'label_general' ),
+        'code-block:code' => cs_recall( 'label_code' ),
         'code-block:text' => cs_recall( 'label_text' ),
         'code-block:design' => cs_recall( 'label_design' ),
       ],

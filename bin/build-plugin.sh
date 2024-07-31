@@ -21,7 +21,7 @@ rm $FOLDER/package.json;
 rm $FOLDER/package-lock.json;
 rm $FOLDER/dist/.gitkeep
 rm $FOLDER/.gitignore
-rm $FOLDER/README.md
+# rm $FOLDER/README.md
 rm -rf $FOLDER/node_modules;
 rm -rf $FOLDER/src;
 rm -rf $FOLDER/.git

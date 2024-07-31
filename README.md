@@ -13,7 +13,7 @@ Using [Highlight.js](https://github.com/highlightjs/highlight.js) create a new [
 - Sample Prefab with copy code button
 - Over 200 colorschemes
 - Support for over 150 languages and file types
-- Will not output any CSS or JS to your page if is not being used
+- Will not output any CSS or JS to your page if it is not being used
 
 
 ## Requirements
@@ -21,6 +21,25 @@ Using [Highlight.js](https://github.com/highlightjs/highlight.js) create a new [
 - [WordPress](https://wordpress.com)
 - [Themeco X / Cornerstone / Pro](https://theme.co), works best on Cornerstone 7.5.0+
 
+
+## Parameters
+
+You can setup a Dynamic select box with `dynamic:code_blocks_languages` for the languages and `dynamic:code_blocks_color_schemes` for the color schemes.
+
+```json
+{
+  "language": {
+    "type": "select",
+    "initial": "javascript",
+    "options": "dynamic:code_blocks_languages"
+  },
+  "colorScheme": {
+    "type": "select",
+    "initial": "tomorrow-night-bright",
+    "options": "dynamic:code_blocks_color_schemes"
+  }
+}
+```
 
 ## Filters
 
