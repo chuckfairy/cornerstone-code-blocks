@@ -70,6 +70,7 @@ npm run build;
 # Or individually
 npm run build-css;
 npm run build-js;
+npm run build-languages;
 npm run build-plugin;
 
 # Scripts are also in ./bin/
