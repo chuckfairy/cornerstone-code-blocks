@@ -116,6 +116,9 @@ function render( $data ) {
   // Default styling
   enqueue_default_styles();
 
+  $data['code'] = str_replace('[', '&#91;', $data['code']);
+  $data['code'] = str_replace(']', '&#93;', $data['code']);
+
   // Output <pre><code> output
   $output = cs_tag('pre', $pre_atts,
     cs_tag( 'code', $atts, htmlspecialchars($data['code']) ),
