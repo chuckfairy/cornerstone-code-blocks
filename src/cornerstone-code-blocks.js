@@ -12,12 +12,12 @@ const attach = window.csGlobal.rivet.attach;
 util.onLoad(function() {
   // Attach to data attribute data-cs-code-block
   attach('[data-cs-code-block]', function(el, params) {
-    let innerText = el.innerText;
+    let innerHTML = el.innerHTML;
 
-    innerText = innerText.replace(/&#91;/g, '[');
-    innerText = innerText.replace(/&#93;/g, ']');
+    innerHTML = innerHTML.replace(/&amp;#91;/g, '[');
+    innerHTML = innerHTML.replace(/&amp;#93;/g, ']');
 
-    el.innerText = innerText;
+    el.innerHTML = innerHTML;
 
     // Highlight this element
     hljs.highlightElement(el);
