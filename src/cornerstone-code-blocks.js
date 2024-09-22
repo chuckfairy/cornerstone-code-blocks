@@ -12,15 +12,15 @@ const attach = window.csGlobal.rivet.attach;
 util.onLoad(function() {
   // Attach to data attribute data-cs-code-block
   attach('[data-cs-code-block]', function(el, params) {
-    let innerHTML = el.innerHTML;
-
     // Unescape shortcode escaping
     if (el.hasAttribute('data-x-escape-shortcodes')) {
+      let innerHTML = el.innerHTML;
+
       innerHTML = innerHTML.replace(/&amp;#91;/g, '[');
       innerHTML = innerHTML.replace(/&amp;#93;/g, ']');
-    }
 
-    el.innerHTML = innerHTML;
+      el.innerHTML = innerHTML;
+    }
 
     // Highlight this element
     hljs.highlightElement(el);
