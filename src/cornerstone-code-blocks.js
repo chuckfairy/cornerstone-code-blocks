@@ -14,8 +14,11 @@ util.onLoad(function() {
   attach('[data-cs-code-block]', function(el, params) {
     let innerHTML = el.innerHTML;
 
-    innerHTML = innerHTML.replace(/&amp;#91;/g, '[');
-    innerHTML = innerHTML.replace(/&amp;#93;/g, ']');
+    // Unescape shortcode escaping
+    if (el.hasAttribute('data-x-escape-shortcodes')) {
+      innerHTML = innerHTML.replace(/&amp;#91;/g, '[');
+      innerHTML = innerHTML.replace(/&amp;#93;/g, ']');
+    }
 
     el.innerHTML = innerHTML;
 
@@ -51,6 +54,7 @@ util.onLoad(function() {
       // or not localhost
       if (!navigator?.clipboard?.writeText) {
         alert('This browser does not support copying to the clipboard, this site is not running https, or you are not running your development site on localhost');
+        return;
       }
 
       // Copy text to clipboard

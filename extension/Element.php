@@ -28,6 +28,7 @@ $values = cs_compose_values(
     'tab_size' => cs_value( $tabSize, 'style' ),
     'color_scheme' => cs_value( $colorScheme, 'markup' ),
     'white_space' => cs_value('inherit'),
+    'escape_shortcodes' => cs_value(false, 'markup'),
 
     'width' => cs_value( '100%' ),
     'max_width' => cs_value( 'none' ),
@@ -116,8 +117,12 @@ function render( $data ) {
   // Default styling
   enqueue_default_styles();
 
-  $data['code'] = str_replace('[', '&#91;', $data['code']);
-  $data['code'] = str_replace(']', '&#93;', $data['code']);
+  // Escape Shortcodes
+  if (!empty($data['escape_shortcodes'])) {
+    $data['code'] = str_replace('[', '&#91;', $data['code']);
+    $data['code'] = str_replace(']', '&#93;', $data['code']);
+    $atts['data-x-escape-shortcodes'] = '';
+  }
 
   // Output <pre><code> output
   $output = cs_tag('pre', $pre_atts,
@@ -199,6 +204,13 @@ function controls() {
 
                 ],
               ],
+            ],
+
+            // Escape Shortcodes
+            [
+              'key' => 'escape_shortcodes',
+              'label' => __('Escape Shortcodes', 'cornerstone'),
+              'type' => 'toggle',
             ],
 
             // Code
