@@ -4,7 +4,7 @@
 Plugin Name: Cornerstone Code Blocks
 Plugin URI: https://github.com/chuckfairy/cornerstone-code-blocks
 Description: Code blocks in Cornerstone with Syntax Highlighting from Highlight.js
-Version:      1.0.0
+Version:      1.0.1
 Author: Chuckfairy
 Author URI: https://chuckfairy.com/
 Text Domain: cornerstone
@@ -14,7 +14,7 @@ Themeco Plugin: cornerstone-code-blocks
 define('CS_CODE_BLOCKS_URI', plugin_dir_url(__FILE__));
 define('CS_CODE_BLOCKS_PATH', plugin_dir_path(__FILE__));
 
-define('CS_CODE_BLOCKS_VERSION', '1.0.0');
+define('CS_CODE_BLOCKS_VERSION', '1.0.1');
 
 // Init
 add_action('init', function() {

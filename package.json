@@ -3,7 +3,7 @@
     "highlight.js": "^11.9.0"
   },
   "name": "cornerstone-code-blocks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./src/cornerstone-code-blocks.js",
   "devDependencies": {},
   "scripts": {
