@@ -12,6 +12,16 @@ const attach = window.csGlobal.rivet.attach;
 util.onLoad(function() {
   // Attach to data attribute data-cs-code-block
   attach('[data-cs-code-block]', function(el, params) {
+    // Unescape shortcode escaping
+    if (el.hasAttribute('data-x-escape-shortcodes')) {
+      let innerHTML = el.innerHTML;
+
+      innerHTML = innerHTML.replace(/&amp;#91;/g, '[');
+      innerHTML = innerHTML.replace(/&amp;#93;/g, ']');
+
+      el.innerHTML = innerHTML;
+    }
+
     // Highlight this element
     hljs.highlightElement(el);
   });
@@ -44,6 +54,7 @@ util.onLoad(function() {
       // or not localhost
       if (!navigator?.clipboard?.writeText) {
         alert('This browser does not support copying to the clipboard, this site is not running https, or you are not running your development site on localhost');
+        return;
       }
 
       // Copy text to clipboard
