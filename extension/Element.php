@@ -22,7 +22,7 @@ $values = cs_compose_values(
   [
     'code' => cs_value(
       __('/* Should Old Acquaintance be forgot, and never brought to mind? */', 'cornerstone'),
-      'markup'
+      'markup:content'
     ),
     'language' => cs_value( $language, 'markup' ),
     'tab_size' => cs_value( $tabSize, 'style' ),
